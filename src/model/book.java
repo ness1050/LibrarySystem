@@ -1,12 +1,17 @@
 package model;
 
-public class book {
+import java.util.Date;
+
+import model.interfaces.identifiable;
+import model.interfaces.loanable;
+
+public class book implements loanable, identifiable{
 
     // Adding basic requirments 
     private String id;
     private String Titel;
     private String Author;
-    private boolean available = false;
+    private boolean available = true;
 
 
     /**
@@ -64,5 +69,38 @@ public class book {
     public String toString() {
         return ("Author :" + getAuthor() + "Title of Book: " + getTitel() + "Book SSN number: " +
             getId());
+    }
+
+
+    @Override
+    public boolean isAvaliable() {
+       return available;
+    }
+
+
+    @Override
+    public void checkOut(Member member) {
+       if(available) {
+        available = false;
+        System.out.println("Book " +  Titel + "Checked out by" + 
+            member.getFirstName());
+       } else {
+        System.out.println("Book is not available for given Date");
+       }
+    }
+
+
+    @Override
+    public void returnItem() {
+        available = true;
+        System.out.println("Book " + Titel + " Returned ");
+    }
+
+
+    @Override
+    public void loanDuration() {
+       Date start = localDate();
+       Date end = localDate();
+       System.out.println("Loan Duration is: " + end - start + "Days");
     }
 }

@@ -1,16 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Member Class.
  */
-public class Member {
+public class Member  extends user{
 
-    
-    private String firstName;
-    private String lastName;
-    private String id;
-    private String email;
-    private String numebr;
+    private List<loan> loans = new ArrayList<>();    
+
     private int Credits;
 
     /**
@@ -19,27 +18,12 @@ public class Member {
      * @param lname requirment
      * @param email recommended
      */
-    public Member(String fname, String lname, String email) {
-        this.firstName = fname;
-        this.lastName = lname;
-        this.email = email;
+    public Member(String name, String email, String id) {
+        super(email, name, email);
     }
 
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void addLoan(loan loan) {
+        loans.add(loan);
     }
 
     public String getId() {
@@ -86,6 +70,13 @@ public class Member {
             ", numebr='" + numebr + "'" +
             ", Credits='" + Credits + "'" +
             "}";
+    }
+
+
+    @Override
+    public void showDetails() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'showDetails'");
     }
 
 
